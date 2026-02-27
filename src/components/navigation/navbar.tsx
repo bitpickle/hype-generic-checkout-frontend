@@ -1,5 +1,5 @@
-"use client";
-import { useState } from "react";
+'use client';
+import { useState } from 'react';
 import {
   MobileNav,
   MobileNavHeader,
@@ -10,21 +10,21 @@ import {
   NavbarButton,
   NavbarLogo,
   NavItems,
-} from "@/components/ui/resizable-navbar";
+} from '@/components/ui/resizable-navbar';
 
 export function NavbarMain() {
   const navItems = [
     {
-      name: "Features",
-      link: "#features",
+      name: 'Features',
+      link: '#features',
     },
     {
-      name: "Pricing",
-      link: "#pricing",
+      name: 'Pricing',
+      link: '#pricing',
     },
     {
-      name: "Contact",
-      link: "#contact",
+      name: 'Contact',
+      link: '#contact',
     },
   ];
 
@@ -53,13 +53,10 @@ export function NavbarMain() {
             />
           </MobileNavHeader>
 
-          <MobileNavMenu
-            isOpen={isMobileMenuOpen}
-            onClose={() => setIsMobileMenuOpen(false)}
-          >
-            {navItems.map((item, idx) => (
+          <MobileNavMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)}>
+            {navItems.map((item) => (
               <a
-                key={`mobile-link-${idx}`}
+                key={`mobile-link-${item.title}`}
                 href={item.link}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="relative text-neutral-600 dark:text-neutral-300"

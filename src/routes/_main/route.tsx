@@ -1,36 +1,36 @@
-import { NavbarMain } from '@/components/navigation/navbar'
-import { createFileRoute, Outlet } from '@tanstack/react-router'
+import { createFileRoute, Outlet } from '@tanstack/react-router';
+import { NavbarMain } from '@/components/navigation/navbar';
 
 export const Route = createFileRoute('/_main')({
   component: RouteComponent,
-})
+});
 
-const navigationData = [
+const _navigationData = [
   {
     title: 'Home',
-    href: '#'
+    href: '#',
   },
   {
     title: 'Products',
-    href: '#'
+    href: '#',
   },
   {
     title: 'About Us',
-    href: '#'
+    href: '#',
   },
   {
     title: 'Contacts',
-    href: '#'
-  }
-]
+    href: '#',
+  },
+];
 
 function RouteComponent() {
   return (
     <>
       <NavbarMain />
-      <main className='container mx-auto p-8 pt-12'>
+      <main className="container mx-auto p-8 pt-12">
         <Outlet />
       </main>
     </>
-  )
+  );
 }

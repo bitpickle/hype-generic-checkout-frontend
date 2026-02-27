@@ -15,13 +15,7 @@
     "indentWidth": 2,
     "lineEnding": "lf",
     "lineWidth": 100,
-    "includes": [
-      "**/*.ts",
-      "**/*.tsx",
-      "**/*.js",
-      "**/*.jsx",
-      "**/*.json"
-    ]
+    "includes": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.json"]
   },
   "linter": {
     "enabled": true,
@@ -63,12 +57,7 @@
         "noAccumulatingSpread": "warn"
       }
     },
-    "includes": [
-      "**/*.ts",
-      "**/*.tsx",
-      "**/*.js",
-      "**/*.jsx"
-    ]
+    "includes": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
   },
   "javascript": {
     "formatter": {
@@ -93,9 +82,7 @@
   },
   "overrides": [
     {
-      "includes": [
-        "libs/*-sdk/**"
-      ],
+      "includes": ["libs/*-sdk/**"],
       "linter": {
         "enabled": false
       },
@@ -107,9 +94,7 @@
       }
     },
     {
-      "includes": [
-        "src/components/ui/**"
-      ],
+      "includes": ["src/components/ui/**"],
       "linter": {
         "enabled": false
       },
@@ -121,9 +106,7 @@
       }
     },
     {
-      "includes": [
-        "src/components/theme-editor/components/examples/**"
-      ],
+      "includes": ["src/components/theme-editor/components/examples/**"],
       "linter": {
         "enabled": false
       },
@@ -135,14 +118,7 @@
       }
     },
     {
-      "includes": [
-        "*.spec.ts",
-        "*.spec.tsx",
-        "*.spec.js",
-        "*.spec.jsx",
-        "*.test.ts",
-        "*.test.tsx"
-      ],
+      "includes": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx", "*.test.ts", "*.test.tsx"],
       "linter": {
         "rules": {
           "suspicious": {
@@ -152,17 +128,13 @@
       }
     },
     {
-      "includes": [
-        "*.json"
-      ],
+      "includes": ["*.json"],
       "formatter": {
         "indentWidth": 2
       }
     },
     {
-      "includes": [
-        "**/*.gen.{ts,tsx,js,jsx}"
-      ],
+      "includes": ["**/*.gen.{ts,tsx,js,jsx}"],
       "linter": {
         "enabled": false
       },
