@@ -1,5 +1,5 @@
-import { client as authClient } from '@/api/auth/client.gen';
-import { client as ticketsClient } from '@/api/tickets/client.gen';
+import { client as authClient } from "@/_gen/api/auth/client.gen";
+import { client as ticketsClient } from "@/_gen/api/tickets/client.gen";
 
 // Default configuration
 const AUTH_API_URL = import.meta.env.VITE_AUTH_API_URL || 'http://localhost:3000';

@@ -3,7 +3,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { CalendarIcon, MapPinIcon, Ticket } from 'lucide-react';
-import { eventControllerFindOne } from '@/api/tickets/sdk.gen';
+import { eventControllerFindOne } from '@/_gen/api/tickets/sdk.gen';
 import { Badge } from '@/components/ui/badge';
 
 export const Route = createFileRoute('/event/$eventId')({

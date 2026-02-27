@@ -3,7 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
-import { userControllerUpdate } from '@/api/auth/sdk.gen';
+import { userControllerUpdate } from '@/_gen/api/auth/sdk.gen';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

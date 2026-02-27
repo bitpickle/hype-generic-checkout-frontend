@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
-import { userControllerCreate } from '@/api/auth/sdk.gen';
+import { userControllerCreate } from '@/_gen/api/auth/sdk.gen';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';

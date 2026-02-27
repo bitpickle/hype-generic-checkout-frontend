@@ -6,7 +6,7 @@ import {
   loginControllerLogin,
   loginControllerRefreshToken,
   type UserDataResponseDto,
-} from '@/api/auth/sdk.gen';
+} from "@/_gen/api/auth/sdk.gen";
 import { authClient, ticketsClient } from '@/lib/api';
 
 interface AuthState {

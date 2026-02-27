@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { type CartTicketDto, cartControllerCreateCart } from '@/api/tickets/sdk.gen';
+import { type CartTicketDto, cartControllerCreateCart } from '@/_gen/api/tickets/sdk.gen';
 import { useAuthStore } from './auth';
 
 export interface CartItem {

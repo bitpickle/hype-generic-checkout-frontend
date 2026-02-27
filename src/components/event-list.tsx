@@ -3,7 +3,7 @@ import { Link } from '@tanstack/react-router';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { CalendarIcon, MapPinIcon } from 'lucide-react';
-import { eventControllerFindAll } from '@/api/tickets/sdk.gen';
+import { eventControllerFindAll } from '@/_gen/api/tickets/sdk.gen';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {

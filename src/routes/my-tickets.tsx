@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 import { QrCode } from 'lucide-react';
-import { ticketControllerGetUserTickets } from '@/api/tickets/sdk.gen';
+import { ticketControllerGetUserTickets } from '@/_gen/api/tickets/sdk.gen';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/stores/auth';
