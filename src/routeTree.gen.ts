@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MainRouteRouteImport } from './routes/_main/route'
 import { Route as MainIndexRouteImport } from './routes/_main/index'
+import { Route as MainEventEventIdRouteImport } from './routes/_main/event/$eventId'
 
 const MainRouteRoute = MainRouteRouteImport.update({
   id: '/_main',
@@ -21,24 +22,32 @@ const MainIndexRoute = MainIndexRouteImport.update({
   path: '/',
   getParentRoute: () => MainRouteRoute,
 } as any)
+const MainEventEventIdRoute = MainEventEventIdRouteImport.update({
+  id: '/event/$eventId',
+  path: '/event/$eventId',
+  getParentRoute: () => MainRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof MainIndexRoute
+  '/event/$eventId': typeof MainEventEventIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof MainIndexRoute
+  '/event/$eventId': typeof MainEventEventIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_main': typeof MainRouteRouteWithChildren
   '/_main/': typeof MainIndexRoute
+  '/_main/event/$eventId': typeof MainEventEventIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/event/$eventId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/_main' | '/_main/'
+  to: '/' | '/event/$eventId'
+  id: '__root__' | '/_main' | '/_main/' | '/_main/event/$eventId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -61,15 +70,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainIndexRouteImport
       parentRoute: typeof MainRouteRoute
     }
+    '/_main/event/$eventId': {
+      id: '/_main/event/$eventId'
+      path: '/event/$eventId'
+      fullPath: '/event/$eventId'
+      preLoaderRoute: typeof MainEventEventIdRouteImport
+      parentRoute: typeof MainRouteRoute
+    }
   }
 }
 
 interface MainRouteRouteChildren {
   MainIndexRoute: typeof MainIndexRoute
+  MainEventEventIdRoute: typeof MainEventEventIdRoute
 }
 
 const MainRouteRouteChildren: MainRouteRouteChildren = {
   MainIndexRoute: MainIndexRoute,
+  MainEventEventIdRoute: MainEventEventIdRoute,
 }
 
 const MainRouteRouteWithChildren = MainRouteRoute._addFileChildren(

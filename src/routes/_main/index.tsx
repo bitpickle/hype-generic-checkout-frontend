@@ -5,5 +5,5 @@ export const Route = createFileRoute('/_main/')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/"!</div>
+  return <div>TODO: Buscar landing dinamicamente</div>
 }

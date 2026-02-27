@@ -1,4 +1,4 @@
-import Navbar from '@/components/navigation/navbar'
+import { NavbarMain } from '@/components/navigation/navbar'
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_main')({
@@ -27,8 +27,10 @@ const navigationData = [
 function RouteComponent() {
   return (
     <>
-      <Navbar navigationData={navigationData} />
-      <Outlet />
+      <NavbarMain />
+      <main className='container mx-auto p-8 pt-12'>
+        <Outlet />
+      </main>
     </>
   )
 }

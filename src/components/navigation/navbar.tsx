@@ -1,69 +1,91 @@
-import { MenuIcon, SearchIcon } from '@hugeicons/core-free-icons'
-
-import { Button } from '@/components/ui/button'
+"use client";
+import { useState } from "react";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
-import { HugeiconsIcon } from '@hugeicons/react'
+  MobileNav,
+  MobileNavHeader,
+  MobileNavMenu,
+  MobileNavToggle,
+  NavBody,
+  Navbar,
+  NavbarButton,
+  NavbarLogo,
+  NavItems,
+} from "@/components/ui/resizable-navbar";
 
+export function NavbarMain() {
+  const navItems = [
+    {
+      name: "Features",
+      link: "#features",
+    },
+    {
+      name: "Pricing",
+      link: "#pricing",
+    },
+    {
+      name: "Contact",
+      link: "#contact",
+    },
+  ];
 
-type NavigationItem = {
-  title: string
-  href: string
-}[]
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-const Navbar = ({ navigationData }: { navigationData: NavigationItem }) => {
   return (
-    <header className='bg-background sticky top-0 z-50'>
-      <div className='mx-auto flex max-w-7xl items-center justify-between gap-8 px-4 py-7 sm:px-6'>
-        <div className='text-muted-foreground flex flex-1 items-center gap-8 font-medium md:justify-center lg:gap-16'>
-          <a href='#' className='hover:text-primary max-md:hidden'>
-            Home
-          </a>
-          <a href='#' className='hover:text-primary max-md:hidden'>
-            Products
-          </a>
-          <a href='#'>
-            Hype
-          </a>
-          <a href='#' className='hover:text-primary max-md:hidden'>
-            About Us
-          </a>
-          <a href='#' className='hover:text-primary max-md:hidden'>
-            Contacts
-          </a>
-        </div>
+    <div className="relative w-full">
+      <Navbar>
+        {/* Desktop Navigation */}
+        <NavBody>
+          <NavbarLogo />
+          <NavItems items={navItems} />
+          <div className="flex items-center gap-4">
+            <NavbarButton variant="secondary">Login</NavbarButton>
+            <NavbarButton variant="primary">Book a call</NavbarButton>
+          </div>
+        </NavBody>
 
-        <div className='flex items-center gap-6'>
-          <Button variant='ghost' size='icon'>
-            <HugeiconsIcon icon={SearchIcon} />
-            <span className='sr-only'>Search</span>
-          </Button>
-          <DropdownMenu>
-            <DropdownMenuTrigger className='md:hidden'>
-              <Button variant='outline' size='icon'>
-                <HugeiconsIcon icon={MenuIcon} />
-                <span className='sr-only'>Menu</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className='w-56' align='end'>
-              <DropdownMenuGroup>
-                {navigationData.map((item, index) => (
-                  <DropdownMenuItem key={index}>
-                    <a href={item.href}>{item.title}</a>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      </div>
-    </header>
-  )
+        {/* Mobile Navigation */}
+        <MobileNav>
+          <MobileNavHeader>
+            <NavbarLogo />
+            <MobileNavToggle
+              isOpen={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            />
+          </MobileNavHeader>
+
+          <MobileNavMenu
+            isOpen={isMobileMenuOpen}
+            onClose={() => setIsMobileMenuOpen(false)}
+          >
+            {navItems.map((item, idx) => (
+              <a
+                key={`mobile-link-${idx}`}
+                href={item.link}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="relative text-neutral-600 dark:text-neutral-300"
+              >
+                <span className="block">{item.name}</span>
+              </a>
+            ))}
+            <div className="flex w-full flex-col gap-4">
+              <NavbarButton
+                onClick={() => setIsMobileMenuOpen(false)}
+                variant="primary"
+                className="w-full"
+              >
+                Login
+              </NavbarButton>
+              <NavbarButton
+                onClick={() => setIsMobileMenuOpen(false)}
+                variant="primary"
+                className="w-full"
+              >
+                Book a call
+              </NavbarButton>
+            </div>
+          </MobileNavMenu>
+        </MobileNav>
+      </Navbar>
+    </div>
+  );
 }
-
-export default Navbar
