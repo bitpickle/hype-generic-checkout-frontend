@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.4.2/schema.json",
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -10,148 +10,46 @@
   },
   "formatter": {
     "enabled": true,
-    "formatWithErrors": false,
-    "indentStyle": "space",
-    "indentWidth": 2,
-    "lineEnding": "lf",
-    "lineWidth": 100,
-    "includes": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.json"]
+    "indentStyle": "space"
   },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
-      "correctness": {
-        "noUnusedVariables": "warn",
-        "useExhaustiveDependencies": "warn",
-        "noUnusedFunctionParameters": "off",
-        "useParseIntRadix": "off"
-      },
-      "suspicious": {
-        "noExplicitAny": "warn",
-        "noFallthroughSwitchClause": "error"
-      },
       "style": {
-        "useConst": "error",
-        "noNonNullAssertion": "warn",
-        "useImportType": "off"
+        "useNodejsImportProtocol": "off"
       },
       "complexity": {
-        "noExcessiveCognitiveComplexity": "warn",
-        "noVoid": "off",
-        "noStaticOnlyClass": "off"
+        "noExcessiveCognitiveComplexity": "off"
       },
-      "nursery": {
-        "useSortedClasses": "off"
-      },
-      "a11y": {
-        "noAriaUnsupportedElements": "warn",
-        "useAltText": "warn",
-        "useButtonType": "warn",
-        "useKeyWithClickEvents": "warn",
-        "useValidAnchor": "warn",
-        "useValidAriaProps": "warn",
-        "useSemanticElements": "warn"
-      },
-      "performance": {
-        "noAccumulatingSpread": "warn"
+      "suspicious": {
+        "noArrayIndexKey": "off"
       }
-    },
-    "includes": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+    }
   },
   "javascript": {
     "formatter": {
-      "jsxQuoteStyle": "double",
-      "quoteProperties": "asNeeded",
-      "trailingCommas": "es5",
-      "semicolons": "always",
-      "arrowParentheses": "always",
-      "bracketSameLine": false,
-      "quoteStyle": "single",
-      "attributePosition": "auto",
-      "bracketSpacing": true
-    },
-    "parser": {
-      "unsafeParameterDecoratorsEnabled": true
+      "quoteStyle": "single"
     }
   },
-  "json": {
-    "formatter": {
-      "enabled": true
+  "css": {
+    "parser": {
+        "cssModules": true,
+        "allowWrongLineComments": true
+    },
+    "linter": {
+        "enabled": false
     }
   },
   "overrides": [
     {
-      "includes": ["libs/*-sdk/**"],
-      "linter": {
-        "enabled": false
-      },
+      "includes": ["src/_gen/**", "_gen/**", "src/routeTree.gen.ts"],
       "formatter": {
         "enabled": false
       },
-      "assist": {
-        "enabled": false
-      }
-    },
-    {
-      "includes": ["src/components/ui/**"],
       "linter": {
-        "enabled": false
-      },
-      "assist": {
-        "enabled": false
-      },
-      "formatter": {
-        "enabled": false
-      }
-    },
-    {
-      "includes": ["src/components/theme-editor/components/examples/**"],
-      "linter": {
-        "enabled": false
-      },
-      "assist": {
-        "enabled": false
-      },
-      "formatter": {
-        "enabled": false
-      }
-    },
-    {
-      "includes": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx", "*.test.ts", "*.test.tsx"],
-      "linter": {
-        "rules": {
-          "suspicious": {
-            "noExplicitAny": "off"
-          }
-        }
-      }
-    },
-    {
-      "includes": ["*.json"],
-      "formatter": {
-        "indentWidth": 2
-      }
-    },
-    {
-      "includes": ["**/*.gen.{ts,tsx,js,jsx}"],
-      "linter": {
-        "enabled": false
-      },
-      "formatter": {
-        "enabled": false
-      },
-      "assist": {
         "enabled": false
       }
     }
-  ],
-  "assist": {
-    "enabled": true,
-    "actions": {
-      "source": {
-        "organizeImports": "on"
-      }
-    }
-  }
+  ]
 }
