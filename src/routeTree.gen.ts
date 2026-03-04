@@ -10,11 +10,23 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MainRouteRouteImport } from './routes/_main/route'
+import { Route as AuthRouteRouteImport } from './routes/_auth/route'
 import { Route as MainIndexRouteImport } from './routes/_main/index'
+import { Route as MainProfileRouteImport } from './routes/_main/profile'
+import { Route as MainCheckoutRouteImport } from './routes/_main/checkout'
+import { Route as AuthRegisterRouteImport } from './routes/_auth/register'
+import { Route as AuthLoginRouteImport } from './routes/_auth/login'
+import { Route as MainWalletIndexRouteImport } from './routes/_main/wallet/index'
 import { Route as MainEventEventIdRouteImport } from './routes/_main/event/$eventId'
+import { Route as MainWalletTransferTicketIdRouteImport } from './routes/_main/wallet/transfer/$ticketId'
+import { Route as MainWalletRefundTicketIdRouteImport } from './routes/_main/wallet/refund/$ticketId'
 
 const MainRouteRoute = MainRouteRouteImport.update({
   id: '/_main',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRouteRoute = AuthRouteRouteImport.update({
+  id: '/_auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MainIndexRoute = MainIndexRouteImport.update({
@@ -22,35 +34,125 @@ const MainIndexRoute = MainIndexRouteImport.update({
   path: '/',
   getParentRoute: () => MainRouteRoute,
 } as any)
+const MainProfileRoute = MainProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => MainRouteRoute,
+} as any)
+const MainCheckoutRoute = MainCheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => MainRouteRoute,
+} as any)
+const AuthRegisterRoute = AuthRegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => AuthRouteRoute,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AuthRouteRoute,
+} as any)
+const MainWalletIndexRoute = MainWalletIndexRouteImport.update({
+  id: '/wallet/',
+  path: '/wallet/',
+  getParentRoute: () => MainRouteRoute,
+} as any)
 const MainEventEventIdRoute = MainEventEventIdRouteImport.update({
   id: '/event/$eventId',
   path: '/event/$eventId',
   getParentRoute: () => MainRouteRoute,
 } as any)
+const MainWalletTransferTicketIdRoute =
+  MainWalletTransferTicketIdRouteImport.update({
+    id: '/wallet/transfer/$ticketId',
+    path: '/wallet/transfer/$ticketId',
+    getParentRoute: () => MainRouteRoute,
+  } as any)
+const MainWalletRefundTicketIdRoute =
+  MainWalletRefundTicketIdRouteImport.update({
+    id: '/wallet/refund/$ticketId',
+    path: '/wallet/refund/$ticketId',
+    getParentRoute: () => MainRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof MainIndexRoute
+  '/login': typeof AuthLoginRoute
+  '/register': typeof AuthRegisterRoute
+  '/checkout': typeof MainCheckoutRoute
+  '/profile': typeof MainProfileRoute
   '/event/$eventId': typeof MainEventEventIdRoute
+  '/wallet/': typeof MainWalletIndexRoute
+  '/wallet/refund/$ticketId': typeof MainWalletRefundTicketIdRoute
+  '/wallet/transfer/$ticketId': typeof MainWalletTransferTicketIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof MainIndexRoute
+  '/login': typeof AuthLoginRoute
+  '/register': typeof AuthRegisterRoute
+  '/checkout': typeof MainCheckoutRoute
+  '/profile': typeof MainProfileRoute
   '/event/$eventId': typeof MainEventEventIdRoute
+  '/wallet': typeof MainWalletIndexRoute
+  '/wallet/refund/$ticketId': typeof MainWalletRefundTicketIdRoute
+  '/wallet/transfer/$ticketId': typeof MainWalletTransferTicketIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/_auth': typeof AuthRouteRouteWithChildren
   '/_main': typeof MainRouteRouteWithChildren
+  '/_auth/login': typeof AuthLoginRoute
+  '/_auth/register': typeof AuthRegisterRoute
+  '/_main/checkout': typeof MainCheckoutRoute
+  '/_main/profile': typeof MainProfileRoute
   '/_main/': typeof MainIndexRoute
   '/_main/event/$eventId': typeof MainEventEventIdRoute
+  '/_main/wallet/': typeof MainWalletIndexRoute
+  '/_main/wallet/refund/$ticketId': typeof MainWalletRefundTicketIdRoute
+  '/_main/wallet/transfer/$ticketId': typeof MainWalletTransferTicketIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/event/$eventId'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/checkout'
+    | '/profile'
+    | '/event/$eventId'
+    | '/wallet/'
+    | '/wallet/refund/$ticketId'
+    | '/wallet/transfer/$ticketId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/event/$eventId'
-  id: '__root__' | '/_main' | '/_main/' | '/_main/event/$eventId'
+  to:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/checkout'
+    | '/profile'
+    | '/event/$eventId'
+    | '/wallet'
+    | '/wallet/refund/$ticketId'
+    | '/wallet/transfer/$ticketId'
+  id:
+    | '__root__'
+    | '/_auth'
+    | '/_main'
+    | '/_auth/login'
+    | '/_auth/register'
+    | '/_main/checkout'
+    | '/_main/profile'
+    | '/_main/'
+    | '/_main/event/$eventId'
+    | '/_main/wallet/'
+    | '/_main/wallet/refund/$ticketId'
+    | '/_main/wallet/transfer/$ticketId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  AuthRouteRoute: typeof AuthRouteRouteWithChildren
   MainRouteRoute: typeof MainRouteRouteWithChildren
 }
 
@@ -63,11 +165,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_main/': {
       id: '/_main/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof MainIndexRouteImport
+      parentRoute: typeof MainRouteRoute
+    }
+    '/_main/profile': {
+      id: '/_main/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof MainProfileRouteImport
+      parentRoute: typeof MainRouteRoute
+    }
+    '/_main/checkout': {
+      id: '/_main/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof MainCheckoutRouteImport
+      parentRoute: typeof MainRouteRoute
+    }
+    '/_auth/register': {
+      id: '/_auth/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof AuthRegisterRouteImport
+      parentRoute: typeof AuthRouteRoute
+    }
+    '/_auth/login': {
+      id: '/_auth/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof AuthRouteRoute
+    }
+    '/_main/wallet/': {
+      id: '/_main/wallet/'
+      path: '/wallet'
+      fullPath: '/wallet/'
+      preLoaderRoute: typeof MainWalletIndexRouteImport
       parentRoute: typeof MainRouteRoute
     }
     '/_main/event/$eventId': {
@@ -77,17 +221,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainEventEventIdRouteImport
       parentRoute: typeof MainRouteRoute
     }
+    '/_main/wallet/transfer/$ticketId': {
+      id: '/_main/wallet/transfer/$ticketId'
+      path: '/wallet/transfer/$ticketId'
+      fullPath: '/wallet/transfer/$ticketId'
+      preLoaderRoute: typeof MainWalletTransferTicketIdRouteImport
+      parentRoute: typeof MainRouteRoute
+    }
+    '/_main/wallet/refund/$ticketId': {
+      id: '/_main/wallet/refund/$ticketId'
+      path: '/wallet/refund/$ticketId'
+      fullPath: '/wallet/refund/$ticketId'
+      preLoaderRoute: typeof MainWalletRefundTicketIdRouteImport
+      parentRoute: typeof MainRouteRoute
+    }
   }
 }
 
+interface AuthRouteRouteChildren {
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthRegisterRoute: typeof AuthRegisterRoute
+}
+
+const AuthRouteRouteChildren: AuthRouteRouteChildren = {
+  AuthLoginRoute: AuthLoginRoute,
+  AuthRegisterRoute: AuthRegisterRoute,
+}
+
+const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
+  AuthRouteRouteChildren,
+)
+
 interface MainRouteRouteChildren {
+  MainCheckoutRoute: typeof MainCheckoutRoute
+  MainProfileRoute: typeof MainProfileRoute
   MainIndexRoute: typeof MainIndexRoute
   MainEventEventIdRoute: typeof MainEventEventIdRoute
+  MainWalletIndexRoute: typeof MainWalletIndexRoute
+  MainWalletRefundTicketIdRoute: typeof MainWalletRefundTicketIdRoute
+  MainWalletTransferTicketIdRoute: typeof MainWalletTransferTicketIdRoute
 }
 
 const MainRouteRouteChildren: MainRouteRouteChildren = {
+  MainCheckoutRoute: MainCheckoutRoute,
+  MainProfileRoute: MainProfileRoute,
   MainIndexRoute: MainIndexRoute,
   MainEventEventIdRoute: MainEventEventIdRoute,
+  MainWalletIndexRoute: MainWalletIndexRoute,
+  MainWalletRefundTicketIdRoute: MainWalletRefundTicketIdRoute,
+  MainWalletTransferTicketIdRoute: MainWalletTransferTicketIdRoute,
 }
 
 const MainRouteRouteWithChildren = MainRouteRoute._addFileChildren(
@@ -95,6 +277,7 @@ const MainRouteRouteWithChildren = MainRouteRoute._addFileChildren(
 )
 
 const rootRouteChildren: RootRouteChildren = {
+  AuthRouteRoute: AuthRouteRouteWithChildren,
   MainRouteRoute: MainRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport

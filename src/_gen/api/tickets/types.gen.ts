@@ -973,6 +973,25 @@ export type CartControllerGetCartResponses = {
 
 export type CartControllerGetCartResponse = CartControllerGetCartResponses[keyof CartControllerGetCartResponses];
 
+export type CartControllerGetActiveCartData = {
+    body?: never;
+    headers: {
+        /**
+         * The tenant id
+         */
+        'tenant-id': string;
+    };
+    path?: never;
+    query?: never;
+    url: '/tickets/carts/active';
+};
+
+export type CartControllerGetActiveCartResponses = {
+    default: GetDetailedCartDto;
+};
+
+export type CartControllerGetActiveCartResponse = CartControllerGetActiveCartResponses[keyof CartControllerGetActiveCartResponses];
+
 export type CartControllerApplyCouponData = {
     body: ApplyCouponDto;
     headers: {
